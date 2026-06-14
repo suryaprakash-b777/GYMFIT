@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GymFit Gym Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand" onclick="navigate('home')">
+            <div class="brand-logo">GF</div>
+            <span class="brand-text">GymFit<span class="brand-tag">GYM</span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><button class="nav-btn active" onclick="navigate('home')">🏠 Home</button></li>
+            <li><button class="nav-btn" onclick="navigate('members')">👥 Members</button></li>
+            <li><button class="nav-btn" onclick="navigate('classes')">📅 Classes</button></li>
+            <li><button class="nav-btn" onclick="navigate('payments')">💳 Payments</button></li>
+            <li><button class="nav-btn" onclick="navigate('dashboard')">📊 Dashboard</button></li>
+            <li><button class="nav-btn theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 Theme</button></li>
+        </ul>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ═══ PAGE: HOME ═══ -->
+    <div id="page-home" class="page active">
+
+        <!-- HERO -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-particles" id="heroParticles"></div>
+            <div class="hero-content">
+                <div class="hero-eyebrow">🏆 INDIA'S PREMIER FITNESS PLATFORM</div>
+                <h1 class="hero-heading">
+                    PUSH YOUR<br />
+                    <span class="hero-highlight">LIMITS</span><br />
+                    EVERY DAY
+                </h1>
+                <p class="hero-desc">Complete gym management — members, classes, payments &amp; analytics — all in one
+                    powerful platform.</p>
+                <div class="hero-actions">
+                    <button class="btn-fire" onclick="navigate('members')">🚀 Join Now</button>
+                    <button class="btn-outline-white" onclick="navigate('classes')">📅 View Schedule</button>
+                </div>
+                <div class="hero-counters">
+                    <div class="hc-item"><span class="hc-num" id="heroMCount">0</span><span class="hc-label">Active
+                            Members</span></div>
+                    <div class="hc-sep"></div>
+                    <div class="hc-item"><span class="hc-num">12</span><span class="hc-label">Daily Classes</span></div>
+                    <div class="hc-sep"></div>
+                    <div class="hc-item"><span class="hc-num">5</span><span class="hc-label">Expert Trainers</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-cards-float">
+                <div class="float-card fc1">
+                    <span class="fc-icon">💪</span>
+                    <div><strong>Strength Training</strong><span>6:00 AM · 15 slots</span></div>
+                </div>
+                <div class="float-card fc2">
+                    <span class="fc-icon">🧘</span>
+                    <div><strong>Morning exercise</strong><span>7:00 AM · 20 slots</span></div>
+                </div>
+                <div class="float-card fc3">
+                    <span class="fc-icon">🔥</span>
+                    <div><strong>HIIT Blast</strong><span>8:00 AM · 12 slots</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="features-section">
+            <div class="section-wrap">
+                <div class="sec-label">WHY CHOOSE US</div>
+                <h2 class="sec-heading">Everything You Need<br /><span class="text-fire">To Run Your Gym</span></h2>
+                <div class="features-grid">
+                    <div class="feat-card" onclick="navigate('members')">
+                        <div class="feat-icon-wrap orange"><span>👤</span></div>
+                        <h3>Member Management</h3>
+                        <p>Register members, manage plans, track attendance and keep detailed profiles in one place.</p>
+                        <div class="feat-link">Manage Members →</div>
+                    </div>
+                    <div class="feat-card" onclick="navigate('classes')">
+                        <div class="feat-icon-wrap blue"><span>📅</span></div>
+                        <h3>Class Scheduling</h3>
+                        <p>Full timetable with search, filters, slot tracking and one-click booking for members.</p>
+                        <div class="feat-link">View Classes →</div>
+                    </div>
+                    <div class="feat-card" onclick="navigate('payments')">
+                        <div class="feat-icon-wrap green"><span>💳</span></div>
+                        <h3>Razorpay Payments</h3>
+                        <p>Seamless payment integration with Razorpay. Process memberships instantly and securely.</p>
+                        <div class="feat-link">Process Payments →</div>
+                    </div>
+                    <div class="feat-card" onclick="navigate('dashboard')">
+                        <div class="feat-icon-wrap purple"><span>📊</span></div>
+                        <h3>Analytics Dashboard</h3>
+                        <p>Real-time stats — member count, revenue, plan distribution and activity visualizations.</p>
+                        <div class="feat-link">View Dashboard →</div>
+                    </div>
+                    <div class="feat-card" onclick="navigate('members')">
+                        <div class="feat-icon-wrap red"><span>⚖️</span></div>
+                        <h3>BMI Calculator</h3>
+                        <p>Built-in health assessment tool. Calculate and categorize BMI for any member instantly.</p>
+                        <div class="feat-link">Calculate BMI →</div>
+                    </div>
+                    <div class="feat-card">
+                        <div class="feat-icon-wrap amber"><span>🗄️</span></div>
+                        <h3>MySQL Database</h3>
+                        <p>All data persisted in a real MySQL database via Express API. Production-ready backend.</p>
+                        <div class="feat-link">Always Reliable →</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRAINERS -->
+        <section class="trainers-section">
+            <div class="trainers-bg"></div>
+            <div class="section-wrap">
+                <div class="sec-label light">OUR TRAINERS</div>
+                <h2 class="sec-heading light">World-Class <span class="text-fire">Coaching Staff</span></h2>
+                <div class="trainers-grid">
+                    <div class="trainer-card">
+                        <div class="trainer-avatar" style="background:linear-gradient(135deg,#FF6B35,#F7931E)">RK</div>
+                        <h4>Ravi Kumar</h4>
+                        <span class="trainer-role">Power Yoga · Spin Cycle</span>
+                        <div class="trainer-exp">8 yrs exp</div>
+                    </div>
+                    <div class="trainer-card">
+                        <div class="trainer-avatar" style="background:linear-gradient(135deg,#6366F1,#8B5CF6)">PS</div>
+                        <h4>Priya Sharma</h4>
+                        <span class="trainer-role">Strength · Functional</span>
+                        <div class="trainer-exp">6 yrs exp</div>
+                    </div>
+                    <div class="trainer-card">
+                        <div class="trainer-avatar" style="background:linear-gradient(135deg,#10B981,#059669)">KN</div>
+                        <h4>Kavya Nair</h4>
+                        <span class="trainer-role">Zumba · Aerobics</span>
+                        <div class="trainer-exp">5 yrs exp</div>
+                    </div>
+                    <div class="trainer-card">
+                        <div class="trainer-avatar" style="background:linear-gradient(135deg,#EF4444,#DC2626)">AR</div>
+                        <h4>Arjun Reddy</h4>
+                        <span class="trainer-role">HIIT · CrossFit</span>
+                        <div class="trainer-exp">7 yrs exp</div>
+                    </div>
+                    <div class="trainer-card">
+                        <div class="trainer-avatar" style="background:linear-gradient(135deg,#F59E0B,#D97706)">MI</div>
+                        <h4>Meena Iyer</h4>
+                        <span class="trainer-role">Pilates · Meditation</span>
+                        <div class="trainer-exp">9 yrs exp</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- /page-home -->
+
+    <!-- ═══ PAGE: MEMBERS ═══ -->
+    <div id="page-members" class="page">
+        <div class="page-hero members-hero">
+            <div class="page-hero-content">
+                <div class="ph-breadcrumb">Home → Members</div>
+                <h1 class="ph-title">Member <span class="text-fire">Management</span></h1>
+                <p class="ph-sub">Register new members, manage plans, and calculate BMI</p>
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="pg-two-col">
+                <!-- Registration Form -->
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon orange">👤</div>
+                        <div>
+                            <h3>New Member Registration</h3>
+                            <span>Fill in all required fields to register</span>
+                        </div>
+                    </div>
+                    <form id="memberForm" novalidate>
+                        <div class="form-row-2">
+                            <div class="field-group">
+                                <label>Full Name <span class="req">*</span></label>
+                                <input type="text" id="mName" placeholder="Surya Kumar" required />
+                            </div>
+                            <div class="field-group">
+                                <label>Email Address <span class="req">*</span></label>
+                                <input type="email" id="mEmail" placeholder="surya@gmail.com" required />
+                            </div>
+                        </div>
+                        <div class="form-row-2">
+                            <div class="field-group">
+                                <label>Phone Number <span class="req">*</span></label>
+                                <input type="tel" id="mPhone" placeholder="+91 98765 43210" required />
+                            </div>
+                            <div class="field-group">
+                                <label>Age</label>
+                                <input type="number" id="mAge" placeholder="25" min="16" max="80" />
+                            </div>
+                        </div>
+                        <div class="field-group">
+                            <label>Select Membership Plan <span class="req">*</span></label>
+                            <div class="plan-selector">
+                                <label class="plan-opt">
+                                    <input type="radio" name="plan" value="basic" data-price="999" />
+                                    <div class="plan-opt-inner">
+                                        <span class="plan-icon">🏃</span>
+                                        <strong>Basic</strong>
+                                        <span class="plan-amt">₹999/mo</span>
+                                        <small>Gym only</small>
+                                    </div>
+                                </label>
+                                <label class="plan-opt">
+                                    <input type="radio" name="plan" value="standard" data-price="1799" checked />
+                                    <div class="plan-opt-inner popular">
+                                        <div class="pop-tag">Popular</div>
+                                        <span class="plan-icon">⭐</span>
+                                        <strong>Standard</strong>
+                                        <span class="plan-amt">₹1799/mo</span>
+                                        <small>Gym + Classes</small>
+                                    </div>
+                                </label>
+                                <label class="plan-opt">
+                                    <input type="radio" name="plan" value="premium" data-price="2999" />
+                                    <div class="plan-opt-inner">
+                                        <span class="plan-icon">👑</span>
+                                        <strong>Premium</strong>
+                                        <span class="plan-amt">₹2999/mo</span>
+                                        <small>All + Trainer</small>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-fire btn-full-w">✅ Register Member</button>
+                    </form>
+                </div>
+
+                <div class="right-stack">
+                    <!-- BMI Calculator -->
+                    <div class="form-card">
+                        <div class="form-card-header">
+                            <div class="form-card-icon blue">📊</div>
+                            <div>
+                                <h3>BMI Calculator</h3><span>Body Mass Index tool</span>
+                            </div>
+                        </div>
+                        <div class="form-row-2">
+                            <div class="field-group">
+                                <label>Weight (kg)</label>
+                                <input type="number" id="bmiW" placeholder="70" min="30" max="200" />
+                            </div>
+                            <div class="field-group">
+                                <label>Height (cm)</label>
+                                <input type="number" id="bmiH" placeholder="175" min="100" max="250" />
+                            </div>
+                        </div>
+                        <button class="btn-fire btn-full-w" onclick="calcBMI()">🔢 Calculate BMI</button>
+                        <div id="bmiOut" style="display:none" class="bmi-output">
+                            <div class="bmi-score-row">
+                                <div class="bmi-circle" id="bmiCircle"><span id="bmiVal">--</span></div>
+                                <div class="bmi-details">
+                                    <div class="bmi-cat" id="bmiCat">—</div>
+                                    <div class="bmi-legend">
+                                        <span class="bl-chip under">Underweight &lt;18.5</span>
+                                        <span class="bl-chip normal">Normal 18.5–25</span>
+                                        <span class="bl-chip over">Overweight 25–30</span>
+                                        <span class="bl-chip obese">Obese &gt;30</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Members List -->
+                    <div class="form-card members-list-card">
+                        <div class="form-card-header">
+                            <div class="form-card-icon green">👥</div>
+                            <div>
+                                <h3>Registered Members</h3><span id="memberCountLabel">Loading…</span>
+                            </div>
+                        </div>
+                        <div id="membersList" class="ml-scroll">
+                            <div class="empty-msg">Loading members… 💪</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ PAGE: CLASSES ═══ -->
+    <div id="page-classes" class="page">
+        <div class="page-hero classes-hero">
+            <div class="page-hero-content">
+                <div class="ph-breadcrumb">Home → Classes</div>
+                <h1 class="ph-title">Class <span class="text-fire">Schedule</span></h1>
+                <p class="ph-sub">Browse, search and book fitness classes</p>
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="classes-toolbar">
+                <div class="search-wrap">
+                    <span class="si">🔍</span>
+                    <input type="text" id="classQ" placeholder="Search class or trainer…" oninput="filterClasses()" />
+                </div>
+                <div class="shift-tabs">
+                    <button class="stab active" onclick="setShift('all',this)">All</button>
+                    <button class="stab" onclick="setShift('morning',this)">🌅 Morning</button>
+                    <button class="stab" onclick="setShift('afternoon',this)">☀️ Afternoon</button>
+                    <button class="stab" onclick="setShift('evening',this)">🌆 Evening</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="styled-table" id="classTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Class Name</th>
+                            <th>Trainer</th>
+                            <th>Duration</th>
+                            <th>Availability</th>
+                            <th>Level</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="classTbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ PAGE: PAYMENTS ═══ -->
+    <div id="page-payments" class="page">
+        <div class="page-hero payments-hero">
+            <div class="page-hero-content">
+                <div class="ph-breadcrumb">Home → Payments</div>
+                <h1 class="ph-title">Payment <span class="text-fire">Gateway</span></h1>
+                <p class="ph-sub">Secure Razorpay-powered membership payments</p>
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="pg-two-col">
+                <div class="form-card pay-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon green">💳</div>
+                        <div>
+                            <h3>Choose Your Plan</h3><span>Secure checkout via Razorpay</span>
+                        </div>
+                    </div>
+                    <div class="pay-plans">
+                        <div class="pay-plan active" onclick="selectPlan(this,999,'Basic')">
+                            <span class="pp-ico">🏃</span>
+                            <div class="pp-body"><strong>Basic Plan</strong><small>Gym access · 1 month</small></div>
+                            <span class="pp-price">₹999</span>
+                        </div>
+                        <div class="pay-plan" onclick="selectPlan(this,1799,'Standard')">
+                            <div class="pp-hot">Most Popular</div>
+                            <span class="pp-ico">⭐</span>
+                            <div class="pp-body"><strong>Standard Plan</strong><small>Gym + All classes · 1
+                                    month</small></div>
+                            <span class="pp-price">₹1,799</span>
+                        </div>
+                        <div class="pay-plan" onclick="selectPlan(this,2999,'Premium')">
+                            <span class="pp-ico">👑</span>
+                            <div class="pp-body"><strong>Premium Plan</strong><small>All features + Personal
+                                    trainer</small></div>
+                            <span class="pp-price">₹2,999</span>
+                        </div>
+                    </div>
+                    <div class="rzp-badge">🔒 Secured by <strong>Razorpay</strong> — Test Mode</div>
+                    <button class="btn-fire btn-full-w pay-btn" onclick="pay()">
+                        💳 Pay Now ₹<span id="payAmt">999</span>
+                    </button>
+                </div>
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon amber">📜</div>
+                        <div>
+                            <h3>Transaction History</h3><span id="txnCountLabel">Loading…</span>
+                        </div>
+                    </div>
+                    <div id="txnList" class="txn-scroll">
+                        <div class="empty-msg">Loading transactions…</div>
+                    </div>
+                    <div class="revenue-row">
+                        <span>Total Revenue</span>
+                        <strong id="totalRevLabel" class="revenue-amt">₹0</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ PAGE: DASHBOARD ═══ -->
+    <div id="page-dashboard" class="page">
+        <div class="page-hero dashboard-hero">
+            <div class="page-hero-content">
+                <div class="ph-breadcrumb">Home → Dashboard</div>
+                <h1 class="ph-title">Admin <span class="text-fire">Dashboard</span></h1>
+                <p class="ph-sub">Real-time analytics and management overview</p>
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="stats-row">
+                <div class="stat-tile orange-tile">
+                    <div class="st-icon">👥</div>
+                    <div class="st-body"><span class="st-lbl">Total Members</span><span class="st-val"
+                            id="dMembers">—</span></div>
+                    <div class="st-sub">↑ Growing</div>
+                </div>
+                <div class="stat-tile green-tile">
+                    <div class="st-icon">💰</div>
+                    <div class="st-body"><span class="st-lbl">Total Revenue</span><span class="st-val"
+                            id="dRevenue">—</span></div>
+                    <div class="st-sub">↑ Active</div>
+                </div>
+                <div class="stat-tile purple-tile">
+                    <div class="st-icon">🏃</div>
+                    <div class="st-body"><span class="st-lbl">Classes Today</span><span class="st-val">12</span></div>
+                    <div class="st-sub">Full schedule</div>
+                </div>
+                <div class="stat-tile amber-tile">
+                    <div class="st-icon">💳</div>
+                    <div class="st-body"><span class="st-lbl">Paid Members</span><span class="st-val"
+                            id="dPaid">—</span></div>
+                    <div class="st-sub" id="dPending">— pending</div>
+                </div>
+            </div>
+
+            <div class="pg-two-col">
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon orange">📈</div>
+                        <div>
+                            <h3>Plan Distribution</h3><span>Member breakdown by plan</span>
+                        </div>
+                    </div>
+                    <div class="plan-dist">
+                        <div class="pd-row">
+                            <span class="pd-lbl">Basic</span>
+                            <div class="pd-track">
+                                <div class="pd-fill basic-c" id="basicBar" style="width:0%"></div>
+                            </div>
+                            <span class="pd-cnt" id="basicCnt">0</span>
+                        </div>
+                        <div class="pd-row">
+                            <span class="pd-lbl">Standard</span>
+                            <div class="pd-track">
+                                <div class="pd-fill std-c" id="stdBar" style="width:0%"></div>
+                            </div>
+                            <span class="pd-cnt" id="stdCnt">0</span>
+                        </div>
+                        <div class="pd-row">
+                            <span class="pd-lbl">Premium</span>
+                            <div class="pd-track">
+                                <div class="pd-fill prem-c" id="premBar" style="width:0%"></div>
+                            </div>
+                            <span class="pd-cnt" id="premCnt">0</span>
+                        </div>
+                    </div>
+                    <div class="form-card-header" style="margin-top:1.5rem">
+                        <div class="form-card-icon blue">📊</div>
+                        <div>
+                            <h3>Revenue Overview</h3>
+                        </div>
+                    </div>
+                    <div class="rev-chart" id="revChart"></div>
+                </div>
+
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-card-icon purple">👤</div>
+                        <div>
+                            <h3>Recent Members</h3>
+                        </div>
+                    </div>
+                    <div id="recentList" class="ml-scroll">
+                        <div class="empty-msg">Loading…</div>
+                    </div>
+                    <div class="form-card-header" style="margin-top:1.5rem">
+                        <div class="form-card-icon green">⚡</div>
+                        <div>
+                            <h3>Quick Actions</h3>
+                        </div>
+                    </div>
+                    <div class="qa-grid">
+                        <button class="qa-btn" onclick="navigate('members')">➕ Add Member</button>
+                        <button class="qa-btn" onclick="navigate('payments')">💳 Payment</button>
+                        <button class="qa-btn" onclick="exportData()">📥 Export JSON</button>
+                        <button class="qa-btn danger-qa" onclick="clearData()">🗑 Clear Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT MEMBER MODAL -->
+    <div id="editModal" class="modal">
+        <div class="modal-content form-card">
+            <div class="form-card-header">
+                <div class="form-card-icon blue">✏️</div>
+                <div>
+                    <h3>Edit Member</h3>
+                    <span>Update member details</span>
+                </div>
+            </div>
+            <form id="editForm" novalidate>
+                <input type="hidden" id="eId" />
+                <div class="form-row-2">
+                    <div class="field-group">
+                        <label>Full Name <span class="req">*</span></label>
+                        <input type="text" id="eName" required />
+                    </div>
+                    <div class="field-group">
+                        <label>Email Address <span class="req">*</span></label>
+                        <input type="email" id="eEmail" required />
+                    </div>
+                </div>
+                <div class="form-row-2">
+                    <div class="field-group">
+                        <label>Phone Number <span class="req">*</span></label>
+                        <input type="tel" id="ePhone" required />
+                    </div>
+                    <div class="field-group">
+                        <label>Age</label>
+                        <input type="number" id="eAge" min="16" max="80" />
+                    </div>
+                </div>
+                <div class="form-row-2">
+                    <div class="field-group">
+                        <label>Plan</label>
+                        <select id="ePlan">
+                            <option value="basic">Basic (₹999)</option>
+                            <option value="standard">Standard (₹1799)</option>
+                            <option value="premium">Premium (₹2999)</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label>Paid Status</label>
+                        <select id="ePaid">
+                            <option value="true">✅ Paid</option>
+                            <option value="false">⏳ Pending</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-fire btn-full-w">✅ Update</button>
+                    <button type="button" class="btn-cancel btn-full-w" onclick="closeEditModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toastZone"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
